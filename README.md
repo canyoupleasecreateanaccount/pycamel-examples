@@ -6,6 +6,8 @@ The test project created for give additional info about features and code implem
 pycamel.
 Here is you can find project structure and test examples for quick start.
 
+All tests have been written for public test service 
+```https://reqres.in/```
 ## Youtube
 Learn automation with us:
 
