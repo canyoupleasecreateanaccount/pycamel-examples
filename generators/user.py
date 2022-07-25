@@ -4,21 +4,29 @@ from generators import fake
 class UserGenerator:
 
     def __init__(self):
-        self.name = None
-        self.job = None
+        self.first_name = None
+        self.last_name = None
+        self.company_id = None
 
-    def set_name(self, name=fake.name()):
-        self.name = name
+    def set_first_name(self, first_name=fake.name()):
+        self.first_name = first_name
         return self
 
-    def set_job(self, job=fake.first_name()):
-        self.job = job
+    def set_last_name(self, last_name=fake.first_name()):
+        self.last_name = last_name
+        return self
+
+    def set_company_id(self, company_id):
+        self.company_id = company_id
         return self
 
     def _clear(self):
-        self.set_job()
-        self.set_name()
+        self.set_first_name()
+        self.set_last_name()
 
     def build(self):
         self._clear()
-        return {"name": self.name, "job": self.job}
+        return {
+            "first_name": self.first_name,
+            "last_name": self.last_name
+        }

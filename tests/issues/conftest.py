@@ -2,9 +2,9 @@ import pytest
 
 from tests.conftest import v1_maker
 
-resource = v1_maker.make_router('/unknown')
+issues = v1_maker.make_router('/issues')
 
 
 @pytest.fixture(scope='session')
-def resource_route():
-    return resource
+def issues_route():
+    return issues
