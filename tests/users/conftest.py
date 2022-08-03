@@ -27,6 +27,6 @@ def get_user():
 def create_user(get_user, users_route):
     response = users_route.post(json=get_user.build())
     user = response.assert_status_code([201]).validate(
-        User, '').get_validated_objects()[0] # TODO Issue will be fixed in next release
+        User, '').get_validated_objects()[0]
     yield user
     users_route.add_to_path(f'/{user.user_id}').delete()

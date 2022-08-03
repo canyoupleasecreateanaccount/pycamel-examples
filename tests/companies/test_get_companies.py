@@ -16,7 +16,7 @@ def test_get_list_of_companies(companies_route):
 def test_getting_list_with_filter(companies_route, status):
     response = companies_route.set_filters({"status": status}).get()
     response.assert_status_code([200]).validate(Company).assert_parameter(
-        "status", status
+        "company_status", status, '_eq'
     )
 
 
@@ -28,7 +28,8 @@ def test_limit_and_offset_filtering(limit, offset, companies_route):
     response = companies_route.set_filters(
         {"limit": limit, "offset": offset}).get()
     response.assert_status_code([200]).validate(Meta, 'meta').assert_parameter(
-        "limit", limit).assert_parameter("offset", offset)
+        "limit", limit
+    ).assert_parameter("offset", offset)
 
 
 def test_getting_company_by_id(companies_route):

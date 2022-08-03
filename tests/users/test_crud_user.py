@@ -1,6 +1,7 @@
 import pytest
 
 from models.users import UserBase, User
+
 from tests.users.conftest import TEST_USER_ID
 from tests.conftest import WRONG_PARAMETERS
 
@@ -17,7 +18,8 @@ def test_get_users(users_route):
 def test_get_users_with_limit_and_offset(users_route, limit, offset):
     response = users_route.set_filters({"limit": limit, "offset": offset}).get()
     response.assert_status_code([200]).validate(User).assert_parameter(
-        "limit", limit).assert_parameter("offset", offset)
+        "limit", limit
+    ).assert_parameter("offset", offset)
 
 
 def test_get_single_player(users_route):
@@ -34,7 +36,8 @@ def test_get_absent_user(user_id, users_route):
 def test_create_user(users_route, get_user):
     response = users_route.post(json=get_user.build())
     response.assert_status_code([201]).validate(
-        UserBase, response_validation_key='')
+        UserBase, response_validation_key=''
+    )
 
 
 @pytest.mark.parametrize("parameter", ["first_name", "company_id"])
@@ -43,7 +46,8 @@ def test_creation_with_empty_params(parameter, users_route, get_user):
     user_data[parameter] = None
     response = users_route.post(json=user_data)
     response.assert_status_code([201]).validate(
-        UserBase, response_validation_key='')
+        UserBase, response_validation_key=''
+    )
 
 
 @pytest.mark.parametrize("parameter", ["first_name"])
