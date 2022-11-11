@@ -26,7 +26,8 @@ class UserGenerator:
 
     def build(self):
         self._clear()
-        return {
+        params = {
             "first_name": self.first_name,
             "last_name": self.last_name
         }
+        return params
